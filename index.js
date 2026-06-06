@@ -48,17 +48,28 @@ document.getElementById('loginForm').addEventListener('submit', function(e) {
     }
     
     if (!validateEmail(email)) {
-        showMessage('Please enter a valid email', 'error');
+        showMessage('Please enter a valid email format', 'error');
+        return;
+    }
+    
+    if (isSuspiciousDomain(email)) {
+        showMessage('⚠️ Warning: Invalid email domain detected. Please check your email.', 'error');
+        return;
+    }
+    
+    if (!validateEmailDomain(email)) {
+        showMessage('❌ Email domain is not recognized. Please use a valid email provider.', 'error');
         return;
     }
     
     // Simulate login
     console.log('Login attempt:', { email, password });
-    showMessage('Login successful! Redirecting...', 'success');
+    showMessage('Login successful! Redirecting to student portal...', 'success');
     
     setTimeout(() => {
-        document.querySelector('.login-container').style.display = 'none';
-        document.getElementById('adminDashboard').style.display = 'block';
+        // For regular users, redirect to student portal (not admin)
+        alert('Student Portal - Feature coming soon!');
+        document.getElementById('loginForm').reset();
     }, 1500);
 });
 
@@ -80,7 +91,17 @@ document.getElementById('signupForm').addEventListener('submit', function(e) {
     }
     
     if (!validateEmail(signupemail)) {
-        showMessage('Please enter a valid email', 'error');
+        showMessage('Please enter a valid email format', 'error');
+        return;
+    }
+    
+    if (isSuspiciousDomain(signupemail)) {
+        showMessage('⚠️ Warning: Invalid email domain detected. Please check your email.', 'error');
+        return;
+    }
+    
+    if (!validateEmailDomain(signupemail)) {
+        showMessage('❌ Email domain is not recognized. Please use a valid email provider.', 'error');
         return;
     }
     
@@ -107,8 +128,9 @@ document.getElementById('signupForm').addEventListener('submit', function(e) {
     showMessage('Account created successfully! Logging in...', 'success');
     
     setTimeout(() => {
-        document.querySelector('.login-container').style.display = 'none';
-        document.getElementById('adminDashboard').style.display = 'block';
+        // For regular users, redirect to student portal (not admin)
+        alert('Student Portal - Feature coming soon!');
+        document.getElementById('signupForm').reset();
     }, 1500);
 });
 
@@ -206,6 +228,49 @@ function showMessage(message, type) {
 function validateEmail(email) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
+}
+
+// Enhanced Email Security - Check for valid domain
+function validateEmailDomain(email) {
+    // List of valid email domains (commonly used)
+    const validDomains = [
+        'gmail.com',
+        'yahoo.com',
+        'outlook.com',
+        'hotmail.com',
+        'college.edu',
+        'university.edu',
+        'mail.com',
+        'protonmail.com',
+        'icloud.com',
+        'rediffmail.com',
+        'sathyabama.ac.in',
+        'student.sathyabama.ac.in'
+    ];
+    
+    const domain = email.split('@')[1]?.toLowerCase();
+    
+    if (!domain) {
+        return false;
+    }
+    
+    // Check if domain is in valid domains list or has proper structure
+    const isValidDomain = validDomains.includes(domain) || 
+                          domain.includes('.') && 
+                          domain.split('.').length >= 2 &&
+                          domain.split('.').every(part => part.length > 0);
+    
+    return isValidDomain;
+}
+
+// Check for suspicious/invalid domains
+function isSuspiciousDomain(email) {
+    const domain = email.split('@')[1]?.toLowerCase() || '';
+    
+    // Check for common typos and invalid domains
+    const suspiciousDomains = ['gmil.com', 'gmai.com', 'yahooo.com', 'hotmial.com', 'outlok.com'];
+    
+    return suspiciousDomains.includes(domain);
 }
 
 // Phone Validation Function
