@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hostal Mart - Student Portal</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="background-animation"></div>
+    
+    <div class="login-container">
+        <div class="login-card">
+            <!-- Logo & Header -->
+            <div class="header">
+                <div class="logo-wrapper">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <h1>Hostal Mart</h1>
+                <p class="subtitle">Sathyabama Chennai Student Portal</p>
+                <p class="location">Near GST Road, Sholinganallur, Chennai</p>
+            </div>
+
+            <!-- Toggle Buttons -->
+            <div class="form-toggle">
+                <button class="toggle-btn active" data-form="login">Login</button>
+                <button class="toggle-btn" data-form="signup">Sign Up</button>
+                <button class="toggle-btn" data-form="admin">Admin Login</button>
+            </div>
+            <div class="status-message" id="statusMessage"></div>
+
+            <!-- Login Form -->
+            <form id="loginForm" class="form active">
+                <div class="form-group">
+                    <label for="email">College Email</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" id="email" placeholder="your.name@college.edu" required>
+                    </div>
+                    <span class="error-message"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="password" placeholder="••••••••" required>
+                        <button type="button" class="toggle-password"><i class="fas fa-eye"></i></button>
+                    </div>
+                    <span class="error-message"></span>
+                </div>
+
+                <div class="remember-forgot">
+                    <label class="checkbox">
+                        <input type="checkbox" id="rememberMe">
+                        <span>Remember me</span>
+                    </label>
+                    <a href="#" class="forgot-link">Forgot Password?</a>
+                </div>
+
+                <button type="submit" class="submit-btn">
+                    <span>Login</span>
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+            </form>
+
+            <!-- Sign Up Form -->
+            <form id="signupForm" class="form">
+                <div class="form-group">
+                    <label for="fullname">Full Name</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-user"></i>
+                        <input type="text" id="fullname" placeholder="John Doe" required>
+                    </div>
+                    <span class="error-message"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="rollno">Roll Number</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-id-card"></i>
+                        <input type="text" id="rollno" placeholder="CSE2024001" required>
+                    </div>
+                    <span class="error-message"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="department">Department</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-building"></i>
+                        <select id="department" required>
+                            <option value="">Select Department</option>
+                            <option value="cse">Computer Science</option>
+                            <option value="ece">Electronics</option>
+                            <option value="me">Mechanical</option>
+                            <option value="civil">Civil</option>
+                            <option value="ee">Electrical</option>
+                        </select>
+                    </div>
+                    <span class="error-message"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-phone"></i>
+                        <input type="tel" id="phone" placeholder="+91 98765 43210" required>
+                    </div>
+                    <span class="error-message"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="signupemail">College Email</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" id="signupemail" placeholder="your.name@college.edu" required>
+                    </div>
+                    <span class="error-message"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="signuppassword">Password</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="signuppassword" placeholder="Min 8 characters" required>
+                        <button type="button" class="toggle-password"><i class="fas fa-eye"></i></button>
+                    </div>
+                    <span class="error-message"></span>
+                </div>
+
+                <button type="submit" class="submit-btn">
+                    <span>Create Account</span>
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+            </form>
+
+            <!-- Admin Login Form -->
+            <form id="adminForm" class="form">
+                <div class="admin-form-header">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Admin Portal</h3>
+                </div>
+
+                <div class="form-group">
+                    <label for="adminEmail">Admin Email</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" id="adminEmail" placeholder="hemanthraj@gmil.com" required>
+                    </div>
+                    <span class="error-message"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="adminPassword">Admin Password</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="adminPassword" placeholder="••••••••" required>
+                        <button type="button" class="toggle-password"><i class="fas fa-eye"></i></button>
+                    </div>
+                    <span class="error-message"></span>
+                </div>
+
+                <div class="remember-forgot">
+                    <label class="checkbox">
+                        <input type="checkbox" id="adminRememberMe">
+                        <span>Remember me</span>
+                    </label>
+                    <a href="#" class="forgot-link">Forgot Password?</a>
+                </div>
+
+                <button type="submit" class="submit-btn">
+                    <span>Admin Login</span>
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+            </form>
+
+            <!-- Divider -->
+            <div class="divider">
+                <span>or continue with</span>
+            </div>
+
+            <!-- Social Login -->
+            <div class="social-login">
+                <button type="button" class="social-btn google">
+                    <i class="fab fa-google"></i>
+                </button>
+                <button type="button" class="social-btn github">
+                    <i class="fab fa-github"></i>
+                </button>
+                <button type="button" class="social-btn microsoft">
+                    <i class="fab fa-microsoft"></i>
+                </button>
+            </div>
+
+            <!-- Footer -->
+            <p class="footer-text">
+                By logging in, you agree to our <a href="#">Terms</a> and <a href="#">Privacy Policy</a>
+            </p>
+        </div>
+
+        <div class="service-preview">
+            <div class="service-card">
+                <i class="fas fa-print"></i>
+                <h3>Printout Service</h3>
+                <p>Fast printouts, document scanning, and print support for your papers.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-pencil-alt"></i>
+                <h3>Stationary Items</h3>
+                <p>Notebooks, pens, markers, folders, and all your stationery essentials.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-tv"></i>
+                <h3>Electronic Items</h3>
+                <p>Browse chargers, headphones, adapters, and small electronics available for students.</p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Admin Dashboard (Hidden by default) -->
+    <div id="adminDashboard" class="admin-dashboard" style="display: none;">
+        <div class="admin-header">
+            <h2>Admin Dashboard - Hostal Mart</h2>
+            <button id="logoutBtn" class="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</button>
+        </div>
+        <div class="admin-content">
+            <div class="admin-tabs">
+                <button class="admin-tab-btn active" data-tab="orders">All Orders</button>
+                <button class="admin-tab-btn" data-tab="stationary">Manage Stationary</button>
+                <button class="admin-tab-btn" data-tab="electronics">Manage Electronics</button>
+            </div>
+
+            <div class="admin-tab-content active" id="orders-tab">
+                <div class="orders-section">
+                    <h3>All Orders Placed</h3>
+                    <div id="ordersList" class="orders-list">
+                        <p class="no-orders">No orders placed yet.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="admin-tab-content" id="stationary-tab">
+                <div class="items-management">
+                    <h3>Manage Stationary Items</h3>
+                    <div class="add-item-form">
+                        <input type="text" id="stationaryItemName" placeholder="Item Name (e.g., Notebook A4)" class="item-input">
+                        <input type="text" id="stationaryItemDesc" placeholder="Description" class="item-input">
+                        <button id="addStationaryBtn" class="add-item-btn">Add Item</button>
+                    </div>
+                    <div id="stationaryItemsList" class="managed-items-list"></div>
+                </div>
+            </div>
+
+            <div class="admin-tab-content" id="electronics-tab">
+                <div class="items-management">
+                    <h3>Manage Electronic Items</h3>
+                    <div class="add-item-form">
+                        <input type="text" id="electronicsItemName" placeholder="Item Name (e.g., USB Cable)" class="item-input">
+                        <input type="text" id="electronicsItemDesc" placeholder="Description" class="item-input">
+                        <button id="addElectronicsBtn" class="add-item-btn">Add Item</button>
+                    </div>
+                    <div id="electronicsItemsList" class="managed-items-list"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Customer Ordering System (Hidden by default) -->
+    <div id="orderingSystem" class="ordering-system" style="display: none;">
+        <div class="order-header">
+            <div>
+                <h2>Hostal Mart - Order Services</h2>
+                <p id="userEmailDisplay" class="user-email"></p>
+            </div>
+            <button id="userLogoutBtn" class="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</button>
+        </div>
+        <div class="order-content">
+            <div class="items-grid">
+                <div class="item-card" data-item="printout">
+                    <i class="fas fa-print"></i>
+                    <h3>Printout Service</h3>
+                    <p>Fast printouts, document scanning, and print support</p>
+                    <div class="printout-type-selector">
+                        <label>Select Printout Type:</label>
+                        <div class="printout-options">
+                            <label class="radio-option">
+                                <input type="radio" name="printoutType" value="Black & White" checked>
+                                <span>Black & White</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="printoutType" value="Colour">
+                                <span>Colour</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="file-upload-wrapper">
+                        <label for="printoutFile" class="file-label"><i class="fas fa-cloud-upload-alt"></i> Upload PDF or Photo</label>
+                        <input type="file" id="printoutFile" class="file-input" accept=".pdf,.jpg,.jpeg,.png,.doc,.docx" data-item="printout">
+                        <span class="file-name" id="printoutFileName">No file selected</span>
+                    </div>
+                    <input type="number" placeholder="Quantity" min="1" value="1" class="quantity-input">
+                    <button class="order-btn">Order Now</button>
+                </div>
+                <div id="stationaryItemsContainer" class="items-container"></div>
+                <div id="electronicsItemsContainer" class="items-container"></div>
+            </div>
+            <div class="orders-history">
+                <h3>Your Orders</h3>
+                <div id="userOrdersList" class="user-orders-list">
+                    <p class="no-orders">No orders yet.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="index.js"></script>
+</body>
+</html>
+
