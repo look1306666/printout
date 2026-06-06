@@ -966,6 +966,47 @@ body {
     margin: 0;
 }
 
+/* Student Profile Card */
+.student-profile-card {
+    max-width: 1200px;
+    margin: 0 auto 40px;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 12px 30px rgba(99, 102, 241, 0.3);
+    width: 100%;
+}
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.profile-header i {
+    font-size: 60px;
+    color: white;
+    min-width: 80px;
+    text-align: center;
+}
+
+.profile-info {
+    color: white;
+    text-align: left;
+}
+
+.profile-info h3 {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.profile-info p {
+    font-size: 14px;
+    opacity: 0.9;
+    margin: 6px 0;
+}
+
 .order-content {
     max-width: 1200px;
     margin: 0 auto;
