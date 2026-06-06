@@ -66,9 +66,21 @@ document.getElementById('loginForm').addEventListener('submit', function(e) {
     console.log('Login attempt:', { email, password });
     showMessage('Login successful! Redirecting to student portal...', 'success');
     
+    // Store user data
+    const userName = email.split('@')[0];
+    localStorage.setItem('studentEmail', email);
+    localStorage.setItem('studentName', userName);
+    
     setTimeout(() => {
-        // For regular users, redirect to student portal (not admin)
-        alert('Student Portal - Feature coming soon!');
+        document.querySelector('.login-container').style.display = 'none';
+        document.getElementById('orderingSystem').style.display = 'block';
+        document.getElementById('userEmailDisplay').textContent = 'Welcome, ' + email;
+        
+        // Update profile card
+        document.getElementById('profileName').textContent = userName;
+        document.getElementById('profileRoll').textContent = 'Roll No: Not provided';
+        document.getElementById('profileDept').textContent = 'Department: Not provided';
+        
         document.getElementById('loginForm').reset();
     }, 1500);
 });
@@ -127,9 +139,26 @@ document.getElementById('signupForm').addEventListener('submit', function(e) {
     
     showMessage('Account created successfully! Logging in...', 'success');
     
+    // Store user data
+    localStorage.setItem('studentEmail', signupemail);
+    localStorage.setItem('studentName', fullname);
+    localStorage.setItem('rollNumber', rollno);
+    localStorage.setItem('department', department);
+    
     setTimeout(() => {
-        // For regular users, redirect to student portal (not admin)
-        alert('Student Portal - Feature coming soon!');
+        document.querySelector('.login-container').style.display = 'none';
+        document.getElementById('orderingSystem').style.display = 'block';
+        document.getElementById('userEmailDisplay').textContent = 'Welcome, ' + fullname + ' (' + signupemail + ')';
+        
+        // Update profile card with signup details
+        document.getElementById('profileName').textContent = fullname;
+        document.getElementById('profileRoll').textContent = 'Roll No: ' + rollno;
+        
+        // Get department label
+        const deptSelect = document.getElementById('department');
+        const deptLabel = deptSelect.options[deptSelect.selectedIndex].text;
+        document.getElementById('profileDept').textContent = 'Department: ' + deptLabel;
+        
         document.getElementById('signupForm').reset();
     }, 1500);
 });
@@ -174,14 +203,33 @@ document.getElementById('adminForm').addEventListener('submit', function(e) {
     }, 1500);
 });
 
-// Logout Functionality
+// Logout Functionality - Admin Dashboard
 document.getElementById('logoutBtn').addEventListener('click', function() {
     document.querySelector('.login-container').style.display = 'flex';
     document.getElementById('adminDashboard').style.display = 'none';
     document.getElementById('loginForm').reset();
     document.getElementById('signupForm').reset();
+    localStorage.removeItem('studentEmail');
+    localStorage.removeItem('studentName');
+    localStorage.removeItem('rollNumber');
+    localStorage.removeItem('department');
     showMessage('Logged out successfully', 'info');
 });
+
+// Logout Functionality - Student Portal
+if (document.getElementById('userLogoutBtn')) {
+    document.getElementById('userLogoutBtn').addEventListener('click', function() {
+        document.querySelector('.login-container').style.display = 'flex';
+        document.getElementById('orderingSystem').style.display = 'none';
+        document.getElementById('loginForm').reset();
+        document.getElementById('signupForm').reset();
+        localStorage.removeItem('studentEmail');
+        localStorage.removeItem('studentName');
+        localStorage.removeItem('rollNumber');
+        localStorage.removeItem('department');
+        showMessage('Logged out successfully', 'info');
+    });
+}
 
 // Admin Tab Switching
 document.querySelectorAll('.admin-tab-btn').forEach(btn => {
